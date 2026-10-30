@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denura Nimsith — Portfolio</title>
+<meta name="description" content="Portfolio of Denura Nimsith — AI/ML developer specializing in computer vision, applied deep learning, and agentic systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#0E131B; --ink-raised:#161D27; --ink-raised-2:#1C2531;
+    --fg:#E9EDF2; --fg-muted:#8E99A8;
+    --accent:#E8A43B; --accent-fg:#1A1203; --accent-cool:#5FC9BE;
+    --line:rgba(233,237,242,0.14); --line-strong:rgba(233,237,242,0.26);
+    --ok:#6FCF97;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ink:#F6F7F9; --ink-raised:#FFFFFF; --ink-raised-2:#EDEFF3;
+      --fg:#141A22; --fg-muted:#5B6673;
+      --accent:#B5750C; --accent-fg:#FFF8EC; --accent-cool:#1E8F82;
+      --line:rgba(20,26,34,0.12); --line-strong:rgba(20,26,34,0.22);
+      --ok:#1F8A52;
+    }
+  }
+  :root[data-theme="light"] {
+    --ink:#F6F7F9; --ink-raised:#FFFFFF; --ink-raised-2:#EDEFF3;
+    --fg:#141A22; --fg-muted:#5B6673;
+    --accent:#B5750C; --accent-fg:#FFF8EC; --accent-cool:#1E8F82;
+    --line:rgba(20,26,34,0.12); --line-strong:rgba(20,26,34,0.22);
+    --ok:#1F8A52;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background: var(--ink);
+    color: var(--fg);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Sora', system-ui, sans-serif; margin: 0; }
+  a { color: inherit; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--ink) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; padding: 14px 24px; }
+  .brand { font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--fg-muted); letter-spacing: 0.02em; }
+  .brand b { color: var(--fg); font-weight: 500; }
+  .navlinks { display:flex; gap: 22px; list-style:none; margin:0; padding:0; }
+  .navlinks a { text-decoration:none; font-size: 14px; color: var(--fg-muted); transition: color .15s; }
+  .navlinks a:hover { color: var(--fg); }
+
+  section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .eyebrow {
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display:block;
+  }
+
+  #top { padding-top: 120px; padding-bottom: 96px; }
+  #top h1 { font-size: clamp(34px, 6vw, 58px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
+  #top .role { font-size: clamp(16px,2.4vw,20px); color: var(--fg-muted); margin-top: 14px; font-weight: 500; }
+  #top .lede { max-width: 620px; color: var(--fg-muted); margin-top: 20px; font-size: 16px; }
+  .cta-row { display:flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+  .btn {
+    display:inline-flex; align-items:center; gap:8px; padding: 11px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; text-decoration:none; border: 1px solid var(--line-strong);
+    transition: all .15s;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost { background: transparent; color: var(--fg); }
+  .btn-ghost:hover { background: var(--ink-raised); border-color: var(--line-strong); }
+
+  .two-col { display:grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+  dl.facts { display:grid; grid-template-columns: auto 1fr; gap: 10px 16px; margin:0; font-size: 14px; }
+  dl.facts dt { color: var(--fg-muted); font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+  dl.facts dd { margin:0; }
+
+  .job-card {
+    background: var(--ink-raised); border: 1px solid var(--line); border-radius: 12px;
+    padding: 24px 26px; margin-bottom: 18px;
+  }
+  .job-card .job-top { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:baseline; margin-bottom: 6px; }
+  .job-card h3 { font-size: 18px; font-weight: 700; }
+  .job-card .job-meta { color: var(--fg-muted); font-size: 13px; font-family:'IBM Plex Mono',monospace; }
+  .job-card .job-role { color: var(--accent); font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+  .job-card ul { margin: 10px 0 14px; padding-left: 20px; }
+  .job-card li { margin-bottom: 6px; font-size: 14.5px; color: var(--fg); }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
+  .chip {
+    font-family:'IBM Plex Mono',monospace; font-size: 11.5px; padding: 4px 10px; border-radius: 100px;
+    background: var(--ink-raised-2); border: 1px solid var(--line); color: var(--fg-muted);
+  }
+
+  .project-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 760px) { .project-grid { grid-template-columns: 1fr; } }
+  .proj-card {
+    background: var(--ink-raised); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px 24px; display:flex; flex-direction:column;
+  }
+  .proj-card.wide { grid-column: 1 / -1; }
+  .proj-card h3 { font-size: 16.5px; margin-bottom: 8px; }
+  .proj-card p { font-size: 14px; color: var(--fg-muted); margin: 0 0 12px; flex:1; }
+
+  .skill-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
+  @media (max-width: 760px) { .skill-grid { grid-template-columns: 1fr; } }
+  .skill-grid dt { font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color: var(--accent-cool); margin-bottom: 6px; }
+  .skill-grid dd { margin: 0 0 20px; font-size: 14.5px; color: var(--fg); }
+
+  #contact .contact-row { display:flex; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+  .copy-btn {
+    display:inline-flex; align-items:center; gap:8px; background: var(--ink-raised);
+    border:1px solid var(--line); border-radius: 8px; padding: 10px 16px; font-size: 14px;
+    cursor:pointer; color: var(--fg); font-family:'IBM Plex Sans',sans-serif;
+  }
+  .copy-btn:hover { border-color: var(--line-strong); }
+
+  footer { padding: 36px 0; text-align:center; color: var(--fg-muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><b>denura.nimsith</b> / portfolio</div>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="top">
+  <div class="wrap">
+    <span class="eyebrow">AI / ML Developer</span>
+    <h1>Denura Nimsith</h1>
+    <p class="role">Computer vision, applied deep learning &amp; agentic systems</p>
+    <p class="lede">Undergraduate in AI &amp; Data Science building production AI systems end to end — from training and deploying models to shipping the backend APIs and infrastructure that put them in front of real users.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/DenuraTHEbest" target="_blank" rel="noopener">View GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/denuranim6/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow">About</span>
+      <h2 style="font-size:26px; margin-bottom:16px;">Full applied-AI stack, shipped</h2>
+      <p style="color:var(--fg-muted); font-size:15px;">I work across the full applied-AI stack: training and deploying computer vision and deep learning models, building LLM-based agents, and shipping the backend systems and REST APIs that put them into production. My experience spans healthcare diagnostics, LLM-powered student support tools, and real-time object detection — backed by hands-on database administration and full-stack delivery work.</p>
+    </div>
+    <div>
+      <dl class="facts">
+        <dt>Based in</dt><dd>Colombo, Sri Lanka</dd>
+        <dt>Studying</dt><dd>BSc (Hons) AI &amp; Data Science — IIT / Robert Gordon University</dd>
+        <dt>Focus</dt><dd>Computer vision, deep learning, LLM agents, backend systems</dd>
+        <dt>Email</dt><dd>denuranimsith321@gmail.com</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <span class="eyebrow">Experience</span>
+    <h2 style="font-size:26px; margin-bottom:24px;">Where I've worked</h2>
+
+    <div class="job-card">
+      <div class="job-top">
+        <h3>Sakya Academy of Higher Education</h3>
+        <span class="job-meta">2025 — Present · Colombo, Sri Lanka</span>
+      </div>
+      <div class="job-role">Software &amp; AI Developer</div>
+      <ul>
+        <li><strong>AI Systems:</strong> Built and operate Dash, a production LangChain/LangGraph AI assistant (FastAPI, Groq LLM) answering student queries in Sinhala and Singlish, backed by an OCR + FAISS retrieval pipeline over 6,000+ document chunks.</li>
+        <li><strong>Backend &amp; Data:</strong> Developed Python ETL pipelines syncing student registration and payment data with internal REST APIs; administer the production MySQL database, including schema changes across 24+ foreign-key-linked tables.</li>
+        <li><strong>Platform Engineering:</strong> Shipped supporting systems across the student platform — a QR-based exam attendance scanner, a confidential VOD viewer, and the React Native mobile shell for the student dashboard.</li>
+      </ul>
+      <div class="chips">
+        <span class="chip">LangGraph</span><span class="chip">FastAPI</span><span class="chip">Groq</span>
+        <span class="chip">MySQL</span><span class="chip">React Native</span><span class="chip">Linux/systemd</span>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-top">
+        <h3>Lion:Bit Software Company</h3>
+        <span class="job-meta">May 2024 — Dec 2024 · Colombo, Sri Lanka</span>
+      </div>
+      <div class="job-role">Software Development Intern</div>
+      <ul>
+        <li><strong>Medical Deep Learning:</strong> Implemented a sensor-fusion deep learning pipeline for cardiac disease detection, preprocessing raw ECG/PCG bio-signals with Wav2Vec2.0 for classification.</li>
+        <li><strong>AI Backend Integration:</strong> Developed Flask REST APIs to serve deep learning model inferences, connecting Python-based ML models to a React frontend.</li>
+        <li><strong>Frontend Engineering:</strong> Engineered high-traffic React/Tailwind CSS interfaces and admin panels, achieving a 30% improvement in Lighthouse performance scores.</li>
+      </ul>
+      <div class="chips">
+        <span class="chip">Flask</span><span class="chip">TensorFlow</span><span class="chip">Wav2Vec2</span>
+        <span class="chip">React</span><span class="chip">Tailwind CSS</span>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-top">
+        <h3>Independent / Freelance</h3>
+        <span class="job-meta">Jan 2024 — Present · Colombo, Sri Lanka</span>
+      </div>
+      <div class="job-role">Software &amp; AI Developer</div>
+      <ul>
+        <li><strong>Computer Vision:</strong> Trained and deployed a custom YOLOv8 model for real-time object detection and tracking, optimized for edge-device inference.</li>
+        <li><strong>Full-Stack Delivery:</strong> Built a QR-based choir attendance system (Flask, then rebuilt on Laravel 12) with per-instrument analytics and date-range reporting; currently rebuilding a client's NGO website (lankarainwater.org) in React with a content admin panel.</li>
+        <li><strong>Process Automation:</strong> Built Python scripts to automate data extraction and cleaning for client workflows, reducing manual data-entry time by 50%.</li>
+      </ul>
+      <div class="chips">
+        <span class="chip">YOLOv8</span><span class="chip">OpenCV</span><span class="chip">Laravel</span>
+        <span class="chip">Flask</span><span class="chip">React</span><span class="chip">Python</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <span class="eyebrow">Projects</span>
+    <h2 style="font-size:26px; margin-bottom:24px;">What I've built</h2>
+    <div class="project-grid">
+      <div class="proj-card wide">
+        <h3>Cardiora — Multi-Modal Cardiac Diagnostic System</h3>
+        <p>Final-year project. A decision-level fusion architecture combining four ML/DL models — CNN (ECG), Wav2Vec2 (PCG), CNN (PPG), and scikit-learn (clinical data) — into a single diagnostic pipeline behind a FastAPI backend, deployed to Hugging Face Spaces. Led a code review that identified and resolved a preprocessing/training parity risk across all four inference pipelines before deployment.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Dash — Student Support Assistant</h3>
+        <p>Production LangChain/LangGraph AI assistant answering student queries in Sinhala and Singlish, backed by an OCR + FAISS retrieval pipeline over 6,000+ document chunks.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Real-Time Object Tracking</h3>
+        <p>Custom-trained YOLOv8 model for real-time object detection and tracking, optimized for edge-device inference.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Choir Attendance System</h3>
+        <p>QR-based attendance system (Flask, then rebuilt on Laravel 12) with per-instrument analytics and date-range reporting.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Triangular Arbitrage Trading Bot</h3>
+        <p>Python bot scanning BTC/USDT, ETH/BTC, and ETH/USDT for triangular arbitrage opportunities via the Alpaca API, tested in paper-trading mode.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Heated 3D-Printer Enclosure Controller</h3>
+        <p>ESP8266-based closed-loop temperature controller for a 3D-printer enclosure, with an OLED readout and web dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <span class="eyebrow">Skills</span>
+    <h2 style="font-size:26px; margin-bottom:24px;">Technical skills</h2>
+    <dl class="skill-grid">
+      <dt>Languages</dt>
+      <dd>Python, Java, JavaScript (ES6+), SQL, HTML5, CSS3</dd>
+      <dt>AI / ML &amp; Data</dt>
+      <dd>PyTorch, TensorFlow, OpenCV, YOLOv8, Scikit-learn, Wav2Vec2, Pandas, NumPy, LangChain, LangGraph, FAISS, Tesseract OCR, Groq API</dd>
+      <dt>Frameworks &amp; Backend</dt>
+      <dd>FastAPI, Flask, Node.js, React, React Native (Expo), Laravel, RESTful API design</dd>
+      <dt>Tools &amp; Platforms</dt>
+      <dd>Git/GitHub, Docker, Linux (systemd), MySQL/phpMyAdmin, Hugging Face Spaces, Agile/Scrum</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <span class="eyebrow">Education</span>
+    <h2 style="font-size:26px; margin-bottom:24px;">Education</h2>
+    <dl class="facts">
+      <dt>2023 — Present</dt><dd>BSc (Hons) Artificial Intelligence and Data Science — IIT, in collaboration with Robert Gordon University, Colombo, Sri Lanka</dd>
+      <dt>Completed</dt><dd>GCE Advanced Level — D.S. Senanayake College, Colombo, Sri Lanka (Physics: B, ICT: B, Combined Mathematics: C)</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h2 style="font-size:26px;">Let's talk</h2>
+    <p style="color:var(--fg-muted); max-width:520px; margin-top:10px;">Open to AI/ML engineering and software engineering roles. Reach out by email, phone, or LinkedIn.</p>
+    <div class="contact-row">
+      <button class="copy-btn" onclick="copyText('denuranimsith321@gmail.com', this)">✉ denuranimsith321@gmail.com</button>
+      <button class="copy-btn" onclick="copyText('+94 76 887 5660', this)">☎ +94 76 887 5660</button>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/denuranim6/" target="_blank" rel="noopener">Denura Nimsith | LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/DenuraTHEbest" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Denura Nimsith. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  function copyText(text, btn) {
+    const original = btn.innerHTML;
+    function done() { btn.innerHTML = '✓ Copied'; setTimeout(() => btn.innerHTML = original, 1500); }
+    try {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } catch (e) {
+      fallbackCopy(text, done);
+    }
+  }
+  function fallbackCopy(text, done) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    done();
+  }
+</script>
+
+</body>
+</html>
